@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" ng-app="professoresModulo">
 
 <head>
 	<meta charset="utf-8">
@@ -27,7 +27,7 @@
 <!-- NAVBAR
 ================================================== -->
 
-<body>
+<body ng-controller="professoresController">
 	<div class="navbar-wrapper">
 		<div class="container">
 
@@ -73,39 +73,37 @@
 		<div class="row">
 			<h1 class="text-center">Cadastro de Professores</h1>
 		</div>
-		<div class="row">
-			<form class="form-horizontal">
-				<div class="form-group">
-					<label for="id" class="col-sm-2 control-label">Código</label>
-					<div class="form-group col-sm-10">
-						<input type="text" class="form-control" id="id" placeholder="Código">
-					</div>
+		<form class="form-horizontal">
+			<div class="form-group">
+				<label for="id" class="col-sm-2 control-label">Código</label>
+				<div class="form-group col-sm-10">
+					<input type="text" class="form-control" id="id" ng-model="professor.id" placeholder="Código">
 				</div>
-				<div class="form-group">
-					<label for="nome" class="col-sm-2 control-label">Password</label>
-					<div class="form-group col-sm-10">
-						<input type="text" class="form-control" id="nome" placeholder="Nome">
-					</div>
+			</div>
+			<div class="form-group">
+				<label for="nome" class="col-sm-2 control-label">Password</label>
+				<div class="form-group col-sm-10">
+					<input type="text" class="form-control" id="nome" ng-model="professor.nome" placeholder="Nome">
 				</div>
-				<div class="form-group">
-					<label for="email" class="col-sm-2 control-label">E-mail</label>
-					<div class="form-group col-sm-10">
-						<input type="text" class="form-control" id="email" placeholder="E-mail">
-					</div>
+			</div>
+			<div class="form-group">
+				<label for="email" class="col-sm-2 control-label">E-mail</label>
+				<div class="form-group col-sm-10">
+					<input type="text" class="form-control" id="email" ng-model="professor.email" placeholder="E-mail">
 				</div>
-				<div class="form-group">
-					<label for="fone" class="col-sm-2 control-label">Fone</label>
-					<div class="form-group col-sm-10">
-						<input type="text" class="form-control" id="fone" placeholder="Telefone">
-					</div>
+			</div>
+			<div class="form-group">
+				<label for="fone" class="col-sm-2 control-label">Fone</label>
+				<div class="form-group col-sm-10">
+					<input type="text" class="form-control" id="fone" ng-model="professor.telefone" placeholder="Telefone">
 				</div>
-				<div class="form-group text-center">
-					<button type="submit" class="btn btn-success">Novo</button>
-					<button type="submit" class="btn btn-primary">Gravar</button>
-					<button type="submit" class="btn btn-danger">Excluir</button>
-				</div>
-			</form>
-		</div>
+			</div>
+			<div class="form-group text-center">
+				<button type="submit" class="btn btn-success" ng-click="limparCampos()">Novo</button>
+				<button type="submit" class="btn btn-primary">Gravar</button>
+				<button type="submit" class="btn btn-danger">Excluir</button>
+			</div>
+		</form>
 
 		<div class="row">
 			<div class="form-group">
@@ -122,11 +120,11 @@
 					<th>Email</th>
 					<th>Telefone</th>
 				</tr>
-				<tr>
-					<td>1</td>
-					<td>Paulo França</td>
-					<td>paulofranca.contato@gmail.com</td>
-					<td>(81) 98882-4977</td>
+				<tr ng-repeat="p in professores" ng-click="selecionarProfessor(p)">
+					<td>{{p.id}}</td>
+					<td>{{p.nome}}</td>
+					<td>{{p.email}}</td>
+					<td>{{p.telefone}}</td>
 				</tr>
 			</table>
 		</div>
@@ -153,6 +151,8 @@
 		window.jQuery || document.write('<script src="js/vendor/jquery.min.js"><\/script>')
 	</script>
 	<script src="js/bootstrap.min.js"></script>
+	<script src="js/angular.min.js"></script>
+	<script src="controller/professores.js"></script>
 </body>
 
 </html>
