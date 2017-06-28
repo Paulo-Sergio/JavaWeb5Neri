@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR" ng-app="professoresModulo">
+<html lang="pt-BR" ng-app="cursosModulo">
 
 <head>
 	<meta charset="utf-8">
@@ -10,7 +10,7 @@
 	<meta name="author" content="">
 	<link rel="icon" href="imagens/favicon.ico">
 
-	<title>Professores - Sistema Web IV</title>
+	<title>Cursos - Sistema Web IV</title>
 
 	<!-- Bootstrap core CSS -->
 	<link href="css/bootstrap.min.css" rel="stylesheet">
@@ -28,43 +28,44 @@
 <!-- NAVBAR
 ================================================== -->
 
-<body ng-controller="professoresController">
+<body ng-controller="cursosController">
 
 	<div ng-include="'menus.html'"></div>
 
 	<!-- .container -->
 	<div class="container" style="margin-top: 80px">
 		<div class="row">
-			<h1 class="text-center">Cadastro de Professores</h1>
+			<h1 class="text-center">Cadastro de Cursos</h1>
 		</div>
 		<form class="form-horizontal">
 			<div class="form-group">
 				<label for="id" class="col-sm-2 control-label">Código</label>
 				<div class="form-group col-sm-10">
-					<input type="text" class="form-control" id="id" ng-model="professor.id" placeholder="Código" required>
+					<input type="text" class="form-control" id="id" ng-model="curso.id" placeholder="Código" required>
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="nome" class="col-sm-2 control-label">Nome</label>
 				<div class="form-group col-sm-10">
-					<input type="text" class="form-control" id="nome" ng-model="professor.nome" placeholder="Nome" required>
+					<input type="text" class="form-control" id="nome" ng-model="curso.nome" placeholder="Nome">
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="email" class="col-sm-2 control-label">E-mail</label>
+				<label for="horario" class="col-sm-2 control-label">Dias e Horários</label>
 				<div class="form-group col-sm-10">
-					<input type="text" class="form-control" id="email" ng-model="professor.email" placeholder="E-mail">
+					<input type="text" class="form-control" id="horario" ng-model="curso.diashorarios" placeholder="Dias e Horários">
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="fone" class="col-sm-2 control-label">Fone</label>
+				<label for="professor" class="col-sm-2 control-label">Professor</label>
 				<div class="form-group col-sm-10">
-					<input type="text" class="form-control" id="fone" ng-model="professor.telefone" placeholder="Telefone">
+					<select name="" class="form-control" ng-model="curso.professor" ng-options="professor.nome for professor in professores track by professor.id">
+					</select>
 				</div>
 			</div>
 			<div class="form-group text-center">
 				<button type="submit" class="btn btn-success" ng-click="limparCampos()">Novo</button>
-				<button type="submit" class="btn btn-primary" ng-click="salvar()" ng-disabled="!professor.nome">Gravar</button>
+				<button type="submit" class="btn btn-primary" ng-click="salvar()" ng-disabled="!curso.nome">Gravar</button>
 				<button type="submit" class="btn btn-danger" ng-click="excluir()">Excluir</button>
 			</div>
 		</form>
@@ -73,22 +74,22 @@
 			<div class="form-group">
 				<div class="input-group">
 					<div class="input-group-addon"><span class="glyphicon glyphicon-search"></span></div>
-					<input type="text" class="form-control" ng-model="pesquisaProfessor" placeholder="Pesquise...">
+					<input type="text" class="form-control" ng-model="pesquisaCurso" placeholder="Pesquise...">
 				</div>
 			</div>
 
 			<table class="table table-bordered table-striped">
 				<tr>
 					<th>Código</th>
-					<th>Nome</th>
-					<th>Email</th>
-					<th>Telefone</th>
+					<th>Descrição</th>
+					<th>Dias e Horários</th>
+					<th>Professor</th>
 				</tr>
-				<tr ng-repeat="p in professores | filter:pesquisaProfessor" ng-click="selecionarProfessor(p)">
-					<td>{{p.id}}</td>
-					<td>{{p.nome}}</td>
-					<td>{{p.email}}</td>
-					<td>{{p.telefone}}</td>
+				<tr ng-repeat="c in cursos | filter:pesquisaCurso" ng-click="selecionarCurso(c)">
+					<td>{{c.id}}</td>
+					<td>{{c.nome}}</td>
+					<td>{{c.diashorarios}}</td>
+					<td>{{c.professor.nome}}</td>
 				</tr>
 			</table>
 		</div>
@@ -116,7 +117,7 @@
 	</script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/angular.min.js"></script>
-	<script src="controller/professores.js"></script>
+	<script src="controller/cursos.js"></script>
 </body>
 
 </html>

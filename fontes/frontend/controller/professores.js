@@ -12,8 +12,18 @@ professoresModulo.controller('professoresController', function ($scope) {
         $scope.professor = professorSelecionado;
     };
 
-    $scope.limparCampos = function(){
-        $scope.professor = "";
+    $scope.limparCampos = function () {
+        $scope.professor = null;
+    }
+
+    $scope.salvar = function () {
+        $scope.professores.push($scope.professor);
+        $scope.limparCampos();
+    }
+
+    $scope.excluir = function () {
+        $scope.professores.splice($scope.professores.indexOf($scope.professor), 1);
+        $scope.limparCampos();
     }
 
 });
