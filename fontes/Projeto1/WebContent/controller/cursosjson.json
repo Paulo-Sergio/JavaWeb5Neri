@@ -1,0 +1,22 @@
+{
+    "cursos": [
+        {
+            "id": 1,
+            "nome": "Java",
+            "diashorarios": "segundas 19 hrs",
+            "professor": "NERI"
+        },
+        {
+            "id": 2,
+            "nome": "DELPHI",
+            "diashorarios": "Terças e Quintas, 20 hrs",
+            "professor": "PAULO"
+        },
+        {
+            "id": 3,
+            "nome": "PHP",
+            "diashorarios": "Sabados 9 hrs",
+            "professor": "Izabelly"
+        }
+    ]
+}
