@@ -20,6 +20,7 @@ public class ProfessorFacade {
 
 	static {
 		listaProfessores.add(new Professor(1, "Paulo Franca", "paulo@gmail.com", "(81)98882-4977"));
+		listaProfessores.add(new Professor(2, "NERI", "nericursos@informaticon.com.br", "(54)94469-1223"));
 	}
 
 	@GET
