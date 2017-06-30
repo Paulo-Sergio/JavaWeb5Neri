@@ -15,16 +15,16 @@ public class Professor implements Serializable {
 	private Integer id;
 	private String nome;
 	private String email;
-	private String fone;
+	private String telefone;
 
 	public Professor() {
 	}
 
-	public Professor(Integer id, String nome, String email, String fone) {
+	public Professor(Integer id, String nome, String email, String telefone) {
 		this.id = id;
 		this.nome = nome;
 		this.email = email;
-		this.fone = fone;
+		this.setTelefone(telefone);
 	}
 
 	public Integer getId() {
@@ -50,13 +50,13 @@ public class Professor implements Serializable {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
-	public String getFone() {
-		return fone;
+	
+	public String getTelefone() {
+		return telefone;
 	}
 
-	public void setFone(String fone) {
-		this.fone = fone;
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
 	}
 
 	@Override
@@ -64,7 +64,7 @@ public class Professor implements Serializable {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
-		result = prime * result + ((fone == null) ? 0 : fone.hashCode());
+		result = prime * result + ((getTelefone() == null) ? 0 : getTelefone().hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		return result;
@@ -84,10 +84,10 @@ public class Professor implements Serializable {
 				return false;
 		} else if (!email.equals(other.email))
 			return false;
-		if (fone == null) {
-			if (other.fone != null)
+		if (getTelefone() == null) {
+			if (other.getTelefone() != null)
 				return false;
-		} else if (!fone.equals(other.fone))
+		} else if (!getTelefone().equals(other.getTelefone()))
 			return false;
 		if (id == null) {
 			if (other.id != null)
