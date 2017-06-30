@@ -41,7 +41,7 @@
 			<div class="form-group">
 				<label for="id" class="col-sm-2 control-label">Código</label>
 				<div class="form-group col-sm-10">
-					<input type="text" class="form-control" id="id" ng-model="professor.id" placeholder="Código">
+					<input type="text" class="form-control" id="id" ng-model="professor.id" placeholder="Código" readonly>
 				</div>
 			</div>
 			<div class="form-group">
@@ -65,7 +65,7 @@
 			<div class="form-group text-center">
 				<button type="submit" class="btn btn-success" ng-click="limparCampos()">Novo</button>
 				<button type="submit" class="btn btn-primary" ng-click="salvar()" ng-disabled="!professor.nome">Gravar</button>
-				<button type="submit" class="btn btn-danger" ng-click="excluir()">Excluir</button>
+				<button type="submit" class="btn btn-danger" ng-click="excluir()" ng-disabled="!professor.id">Excluir</button>
 			</div>
 		</form>
 
