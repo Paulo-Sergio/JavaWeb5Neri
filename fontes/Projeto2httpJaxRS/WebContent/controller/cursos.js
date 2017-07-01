@@ -1,11 +1,22 @@
 var cursosModulo = angular.module('cursosModulo', []);
 
-cursosModulo.controller('cursosModulo', function ($scope, $http) {
+cursosModulo.controller('cursosController', function ($scope, $http) {
 
-    var urlCursos = 'http://localhost:8080/Projeto2httpJaxRS/rest/professores';
+	var urlProfessores = 'http://localhost:8080/Projeto2httpJaxRS/rest/professores';
+	var urlCursos = 'http://localhost:8080/Projeto2httpJaxRS/rest/cursos';
 	
     $scope.listarCursos = function() {
 		$http.get(urlCursos).then(function(response) {
+			$scope.cursos = response.data;
+			
+		}).catch(function(err) {
+			alert(err);
+			console.log(err);
+		});
+	};
+	
+	$scope.listarProfessores = function() {
+		$http.get(urlProfessores).then(function(response) {
 			$scope.professores = response.data;
 			
 		}).catch(function(err) {
@@ -16,20 +27,21 @@ cursosModulo.controller('cursosModulo', function ($scope, $http) {
 	
 	// executa funcao para listagem
 	$scope.listarCursos();
+	$scope.listarProfessores();
 	
-	$scope.selecionarProfessor = function(professorSelecionado){
-		$scope.professor = professorSelecionado;
+	$scope.selecionarCurso = function(cursoSelecionado){
+		$scope.curso = cursoSelecionado;
 	}
 	
 	$scope.limparCampos = function(){
-		$scope.professor = null;
+		$scope.curso = null;
 	}
 	
 	// salvar ou atualiza
 	$scope.salvar = function(){
-		if($scope.professor.id == null || $scope.professor.id == undefined){
-			$http.post(urlCursos, $scope.professor).then(function(response){
-				$scope.professores.push($scope.professor);
+		if($scope.curso.id == null || $scope.curso.id == undefined){
+			$http.post(urlCursos, $scope.curso).then(function(response){
+				$scope.cursos.push($scope.curso);
 				$scope.limparCampos();
 				
 			}).catch(function(err){
@@ -37,7 +49,7 @@ cursosModulo.controller('cursosModulo', function ($scope, $http) {
 				console.log(err);
 			});
 		} else {
-			$http.put(urlCursos, $scope.professor).then(function(response){
+			$http.put(urlCursos, $scope.curso).then(function(response){
 				$scope.listarCursos();
 				$scope.limparCampos();
 				
@@ -50,11 +62,11 @@ cursosModulo.controller('cursosModulo', function ($scope, $http) {
 	
 	// excluir
 	$scope.excluir = function(){
-		if($scope.professor.id == null || $scope.professor.id == undefined){
+		if($scope.curso.id == null || $scope.curso.id == undefined){
 			alert("Fazer selecionar um registro para efetuar a exclusão");
 			console.log("Fazer selecionar um registro para efetuar a exclusão");
 		} else {
-			$http.delete(urlCursos + '/' + $scope.professor.id).then(function(){
+			$http.delete(urlCursos + '/' + $scope.curso.id).then(function(){
 				$scope.listarCursos();
 				$scope.limparCampos();
 			}).catch(function(err) {
