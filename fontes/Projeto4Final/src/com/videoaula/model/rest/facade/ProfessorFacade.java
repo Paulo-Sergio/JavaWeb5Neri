@@ -1,8 +1,8 @@
 package com.videoaula.model.rest.facade;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -14,45 +14,36 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import com.videoaula.model.model.Professor;
+import com.videoaula.model.service.IProfessorService;
 
 @Path("/professores")
 @Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 @Consumes(MediaType.APPLICATION_JSON)
 public class ProfessorFacade {
 
-	static List<Professor> listaProfessores = new ArrayList<Professor>();
-
-	static {
-		listaProfessores.add(new Professor(1, "Paulo Franca", "paulo@gmail.com", "(81)98882-4977"));
-		listaProfessores.add(new Professor(2, "NERI", "nericursos@informaticon.com.br", "(54)94469-1223"));
-	}
+	@Inject
+	private IProfessorService iProfessorService;
 
 	@GET
 	public List<Professor> getProfessores() {
-		return listaProfessores;
+		return this.iProfessorService.getProfessores();
 	}
 
 	@POST
-	public Professor salvar(Professor professor) {
-		System.out.println(professor);
-		listaProfessores.add(professor);
-		return professor;
+	public Professor salvarProfessor(Professor professor) {
+		return this.iProfessorService.salvarProfessor(professor);
 	}
 
 	@PUT
-	public void atualizar(Professor professor) {
-		System.out.println(professor);
-		listaProfessores.remove(professor);
-		listaProfessores.add(professor);
+	public void atualizarProfessor(Professor professor) {
+		this.iProfessorService.alterarProfessor(professor);
 	}
 
 	@DELETE
-	@Path("/{idProfessor}")
-	public void excluir(@PathParam("idProfessor") Integer idProfessor) {
+	@PathParam("/{id}")
+	public void excluirProfessor(@PathParam("id") Integer idProfessor) {
 		Professor professor = new Professor();
 		professor.setId(idProfessor);
-		System.out.println(professor);
-		
-		listaProfessores.remove(professor);
+		this.iProfessorService.excluirProfessor(professor);
 	}
 }
