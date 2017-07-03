@@ -40,7 +40,7 @@ public class ProfessorFacade {
 	}
 
 	@DELETE
-	@PathParam("/{id}")
+	@Path("/{id}")
 	public void excluirProfessor(@PathParam("id") Integer idProfessor) {
 		Professor professor = new Professor();
 		professor.setId(idProfessor);

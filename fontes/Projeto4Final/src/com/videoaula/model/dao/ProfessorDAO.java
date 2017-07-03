@@ -28,7 +28,8 @@ public class ProfessorDAO implements IProfessorDAO {
 
 	@Override
 	public void excluirProfessor(Professor professor) {
-		this.entityManager.remove(professor);
+		Professor professorMerge = this.entityManager.merge(professor);
+		this.entityManager.remove(professorMerge);
 	}
 
 	@Override
